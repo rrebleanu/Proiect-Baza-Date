@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Gestiune Construcții - Robert DB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Management Proiect: Teren Sintetic</h1>
+        <div class="nav-buttons">
+            <button onclick="runSpecial('complex')">Cerere Complexă (c)</button>
+            <button onclick="runSpecial('grupare')">Grupare & Having (d)</button>
+            <button onclick="runView('V_ANGAJATI_ECHIPE')">View LMD (f1)</button>
+            <button onclick="runView('V_COST_TOTAL_ETAPA')">View Complex (f2)</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <div class="filter-group">
+                <label>Selectează Tabel:</label>
+                <select id="tableSelect" onchange="loadData()">
+                    <option value="ANGAJAT">Angajati</option>
+                    <option value="ECHIPA">Echipe</option>
+                    <option value="MATERIAL">Materiale</option>
+                    <option value="ETAPA">Etape Proiect</option>
+                    <option value="FURNIZOR">Furnizori</option>
+                    <option value="UTILAJ">Utilaje</option>
+                    <option value="COST">Costuri/Facturi</option>
+                    <option value="ETAPA_MATERIAL">Etapa_Material</option>
+                    <option value="GESTIUNE_UTILAJ">Gestiune_Utilaj</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Sortare după:</label>
+                <input type="text" id="sortBy" placeholder="Introduceti coloana">
+                <select id="orderDir">
+                    <option value="ASC">Ascendent</option>
+                    <option value="DESC">Descendent</option>
+                </select>
+                <button class="btn-query" onclick="loadData()">Afișează/Sortează (a)</button>
+            </div>
+        </div>
+
+        <div id="insertSection" class="filters" style="display:none; margin-top: 20px; flex-direction: column;">
+            <h3 style="color: white; margin-bottom: 10px;">Adaugă înregistrare nouă în <span
+                    id="currentTableTitle"></span></h3>
+            <div id="dynamicInputs" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            <button class="btn-query" style="background-color: #27ae60; margin-top: 15px;"
+                onclick="insertData()">Salvează în Baza de Date</button>
+        </div>
+
+        <div id="resultArea">
+            <p class="placeholder-text">Alege un tabel din listă sau o cerere specială.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
